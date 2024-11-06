@@ -1,60 +1,101 @@
-# CodeIgniter 4 Framework
+# Bem vindo!
+## Esté o codeigniter mágico!
 
-## What is CodeIgniter?
+Montei esta automação para unir a facilidade do codeigniter com o spark, de forma a fazer tudo (ou quase tudo) da forma mais automática o possível
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Como utilizar?
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+* Tudo o quê você precisa está no comando php spark app:magica [nome_classe]
+* Use o [nome_classe] preferencialmente em inglês, no singular e apenas uma palavra (vai precisar de ajustes no resultado se vc usar por ex: minhaClasse)
+* Ao utilizar o comando, o sistema vai criar:
+	* A migration: onde você vai precisar customizar os campos que você deseja pra sua tabela
+	* O Model, onde você vai precisar definir os campos autorizados para a registro
+	* O Controller, onde você vai precisar ajustar as regras de validação do seu modelo
+	* As views com o nome de classe (onde estarão disponíveis a lista de todos os registros, funções de adicionar, editar e deletar) e uma chamada FORM (seu formulario 	para realizar tanto a inclusao quanto a edição dos registros)
+	* As rotas no arquivo Routes
+* Fácil não é? O foco é realmente automatizar ao máximo o processo de criação dos CRUDS para você focar no que é específico do negócio e design
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## O quê eu preciso saber para utilizar a ferramenta?
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+* codeigniter - Com certeza vc precisa conhecer (pelo menos um pouco) da framework
+* HTML - Com ele que você vai modelar as suas páginas
+* PHP - essa é a linguagem que conversa com o seu servidor
+* CSS - ajustes nos estilos do seu super site
 
-## Important Change with index.php
+## Configuração inicial:
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+* Extrair os dados do zip em alguma pasta
+* Ajustar a configuração do banco de dados no arquivo App/Config/Database
+* Ajustar o caminho (url) da aplicação no arquivo App/Config/App
+* Criar o banco de dados, você pode utilizar o comando, via linha de comando na pasta raiz do projeto como "php spark db:create nome_do_banco"
+* Executar a migração base (que vai gerar as tabelas de controle de usuários e sessões) "php spark migrate --all"
+* Para testar seu site, você pode usar o comando "php spark serve" (ou utilizar um servidor web de sua escolha)
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Quais recursos já estão plugados neste modelo base?
 
-**Please** read the user guide for a better explanation of how CI4 works!
+* Mantive tudo o quê geralmente utilizo nas minhas aplicações, mas você pode editar tudo o quê quiser editando o layout (VIEWS/Layout) e os recursos (PUBLIC):
+	* [Bootstrap](https://getbootstrap.com/) - ahhhh o bootstrap, quem não ama ele não é mesmo?
+	* [Font Aweasome Icons](https://fontawesome.com/search?o=r&m=free) - Icones e muitos icones! e de GRAÇA
+	* [Datatables.net](https://datatables.net/) - Tabelas de forma prática, bonita, e rápida
+	* [Trumbowyg](https://alex-d.github.io/Trumbowyg/) - Super editor WYSIWYG de text (em suma, faz um textarea virar um html completo com edição e zas e zas)
 
-## Repository Management
+## Dicas de ouro
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+* Mudar o tema do layout para escuro (dark?)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+	* No arquivo head.html adicione na tag html o atributo data-bs-theme="dark"
+	* Customizar cores e afins
+	* Isso é com você, utilize as classes do bootstrap e mande bala na sua arte.
+	* O layout dos arquivos gerados com o App:magica estão disponíveis no caminho App/Commands/Views
 
-## Contributing
+* Alguns tipos de campos que podem ser usados nas migrations
+	* VARCHAR
+	* INT
+	* TEXT
+	* DOUBLE
+	* FLOAT
+	* BOOLEAN
+	* DATETIME
+	* DATE
+	* TIME
 
-We welcome contributions from the community.
+* Regras de validação legais (as que mais uso)
+	* required - Requerido tem que estar preenchido
+	* alpha - somente letras
+	* alpha_numeric - somente letras e numeros
+	* is_unique - valida se o registro é unico nessa tabela / base
+	* integer - somente números inteiros
+	* max_length[xxx] - tamanho maximo do campo
+	* min_length[xxx] - tamanho minimo do campo
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+* Fazer uma consulta com relacionamento entre modelos (é esse o codeigniter não é tão mãe assim não rs)
+	* no seu modelo a consulta deve ser na cadência
+	* return $this->select('user_plans.*, plans.*, payments.*') ->join('plans', 'user_plans.plan_id = plans.id', 'inner') ->join('payments', 'payments.id = user_plans.payment_id', 'inner') ->where(['user_id' => $user_id])->findAll();
 
-## Server Requirements
+* Utilizar o Trumbowyg
+	* Utilize a section scripts do modelo e inclua o seguinte fonte:
+	* $('textarea').trumbowyg();
+	* onde o 'textarea' pode ser o id do campo, classe ou tipo de campo
+	* Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+* Upload de arquivos
+	* no codeigniter esse tema é super facilitado, veja só
+	* no view/class/form vc cria o campo que vai receber seu arquivo (user o helper form_input, não esqueça de trocar o form_open por form_open_multipart)
+	* no controller, vc valida o arquivo (ai vai precisar escrever sua logica)
+	* e para salvar os dados vai usar:
+	* $arquivo = $this->request->getFile('campo_arquivo');
+	* Faz as validações com o q vc precisa ($arquivo->getError())
+	* if ($arquivo->getError() != 0){ echo "erro ao tratar o arquivo"; }
+	* se passar na validação vamos salvar, testando ao mover o arquivo do servidor
+	* $nome_arquivo = $arquivo->getRandomName();
+	* if ($arquivo->move('caminho_destino', $nome_arquivo)){
+	* $dados['campo_arquivo'] = 'caminho_destino/' . $nome_arquivo;}
+	* else {
+	* echo "falha ao salvar o arquivo";}
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+* Icones do font Aweasome
+	* Muito fácil! adicione a tag i com a classe como no site deles (exemplo fa-regular fa-face-smile-wink) 
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## E quem é você mesmo?
+* Opa, me chamo Henrique Seifarth Lovato e sou apaixonado por tecnologias ágeis para gerar valor rapidamente me nosso dia a dia.
+* Você pode saber mais no [Meu Site](https://henriqueseifarth.com.br)
