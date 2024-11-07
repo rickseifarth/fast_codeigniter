@@ -7,21 +7,21 @@
         </button>
         <div class="d-flex justify-content-end">
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0 text-white">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
                     <?php if (auth()->user() == null): ?>
-                        <li class="nav-item fw-bold text-white"><?= anchor('login', 'Login', ['class' => 'nav-link']) ?></li>
-                        <li class="nav-item fw-bold text-white"><?= anchor('register', 'Registro', ['class' => 'nav-link']) ?></li>
+                        <li class="nav-item fw-bold "><?= anchor('login', 'Login', ['class' => 'nav-link']) ?></li>
+                        <li class="nav-item fw-bold "><?= anchor('register', 'Registro', ['class' => 'nav-link']) ?></li>
                     <?php else: ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle fw-bold " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?= auth()->user()->email ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><?= anchor('teste', 'Teste', ['class' => 'dropdown-item fw-bold text-white'])?></li>
+                                <li><?= anchor('teste', 'Teste', ['class' => 'dropdown-item fw-bold '])?></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><?= anchor('logout', 'Sair', ['class' => 'dropdown-item fw-bold text-danger'])?></li>
+                                <li><?= anchor('logout', 'Sair', ['class' => 'dropdown-item fw-bold '])?></li>
                             </ul>
                         </li>
                     <?php endif ?>

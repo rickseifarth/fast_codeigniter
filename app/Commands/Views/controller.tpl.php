@@ -50,7 +50,7 @@ class {class} extends {extends}
             'name' => ['label' => 'Name', 'rules' => 'required|max_length[100]|min_length[3]']
             ];
 
-        if ($this->validateData($dados, $rules)){
+        if (!$this->validateData($dados, $rules)){
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         
