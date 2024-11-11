@@ -5,7 +5,7 @@
 <div class="container">
     <div class="card shadow">
         <div class="card-header">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <div>
                 {teste}
                 </div>
