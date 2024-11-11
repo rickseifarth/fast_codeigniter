@@ -70,28 +70,63 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 
 * Fazer uma consulta com relacionamento entre modelos (é esse o codeigniter não é tão mãe assim não rs)
 	* no seu modelo a consulta deve ser na cadência
-	* return $this->select('user_plans.*, plans.*, payments.*') ->join('plans', 'user_plans.plan_id = plans.id', 'inner') ->join('payments', 'payments.id = user_plans.payment_id', 'inner') ->where(['user_id' => $user_id])->findAll();
+	'''
+	return $this->select('user_plans.*, plans.*, payments.*')->join('plans', 'user_plans.plan_id = plans.id', 'inner')
+		->join('payments', 'payments.id = user_plans.payment_id', 'inner') ->where(['user_id' => $user_id])->findAll();
+	'''
 
 * Utilizar o Trumbowyg
 	* Utilize a section scripts do modelo e inclua o seguinte fonte:
-	* $('textarea').trumbowyg();
+	'''
+	$('textarea').trumbowyg(
+		lang: 'pt_br',
+		btns: [
+			['viewHTML'],
+			['undo', 'redo'], // Only supported in Blink browsers
+			['formatting'],
+			['strong', 'em', 'del'],
+			['foreColor', 'backColor'],
+			['superscript', 'subscript'],
+			['link'],
+			['emoji'],
+			['insertImage'],
+			['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+			['unorderedList', 'orderedList'],
+			['horizontalRule'],
+			['removeformat'],
+			['fullscreen']
+		]
+	);
+	'''
+	* 
 	* onde o 'textarea' pode ser o id do campo, classe ou tipo de campo
 	* Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^
+	* Outra coisa importante! Quando um formulário recarrega com um erro de validação do codeiginiter, você pode ter problemas com a função old na formatação desse campo. Para resolver não esqueça do seguimte parametro:
+	'''
+	old('seu_campo', 'valor_padrao', 'raw') //o raw que é importante, pois ajusta a formatação dos campos
+	'''
 
 * Upload de arquivos
 	* no codeigniter esse tema é super facilitado, veja só
 	* no view/class/form vc cria o campo que vai receber seu arquivo (user o helper form_input, não esqueça de trocar o form_open por form_open_multipart)
 	* no controller, vc valida o arquivo (ai vai precisar escrever sua logica)
 	* e para salvar os dados vai usar:
-	* $arquivo = $this->request->getFile('campo_arquivo');
+	'''
+	$arquivo = $this->request->getFile('campo_arquivo');
+	'''
 	* Faz as validações com o q vc precisa ($arquivo->getError())
-	* if ($arquivo->getError() != 0){ echo "erro ao tratar o arquivo"; }
+	'''
+	if ($arquivo->getError() != 0){ echo "erro ao tratar o arquivo"; }
+	'''
 	* se passar na validação vamos salvar, testando ao mover o arquivo do servidor
-	* $nome_arquivo = $arquivo->getRandomName();
-	* if ($arquivo->move('caminho_destino', $nome_arquivo)){
-	* $dados['campo_arquivo'] = 'caminho_destino/' . $nome_arquivo;}
-	* else {
-	* echo "falha ao salvar o arquivo";}
+	'''
+	$nome_arquivo = $arquivo->getRandomName();
+	if ($arquivo->move('caminho_destino', $nome_arquivo)){
+		$dados['campo_arquivo'] = 'caminho_destino/' . $nome_arquivo;}
+	else {
+		echo "falha ao salvar o arquivo";
+	}
+	'''
 
 * Icones do font Aweasome
 	* Muito fácil! adicione a tag i com a classe como no site deles (exemplo fa-regular fa-face-smile-wink) 

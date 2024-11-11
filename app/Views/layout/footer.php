@@ -11,5 +11,9 @@
 <?= script_tag('js/jquery.min.js'); ?>
 <?= script_tag('js/datatables.min.js'); ?>
 <?= script_tag('js/trumbowyg.min.js'); ?>
+<?= script_tag('js/langs/pt_br.min.js'); ?>
+<?= script_tag('js/plugins/colors/trumbowyg.colors.min.js'); ?>
+<?= script_tag('js/plugins/emoji/trumbowyg.emoji.min.js'); ?>
+
 
 <?= $this->renderSection('scripts') ?>
