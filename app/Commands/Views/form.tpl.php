@@ -17,11 +17,8 @@
         <div class="card-body">
             <?@= form_open('{teste2}/save') ?>
             <?@= csrf_field() ?>
-            <?@= form_hidden('id', isset(${teste3}['id'])? ${teste3}["id"]:old('id', '')) ?>
-            <div class="form-floating mb-4">
-                <?@= form_input('campo1', old('campo1', isset(${teste3}['campo1'])? ${teste3}["campo1"]: ''), ['class' => 'form-control', 'placeholder' => 'placeholder']) ?>
-                <?@= form_label('campo1', 'campo1') ?>
-            </div>
+            <?@= inputHidden('id', ${teste3}['id'] ?? null); ?>
+            <?@= inputText('campo1', 'campo1', ${teste3}["campo1"] ?? null)?>
 
             <div class="d-grid col-12 col-md-8 mx-auto m-3">
                 <?@= form_submit('submit', 'Salvar', ['class' => 'btn btn-primary btn-block']) ?>
@@ -30,4 +27,7 @@
         </div>
     </div>
 </div>
+<?@= $this->endSection() ?>
+<?@= $this->section('scripts') ?>
+<!-- códigos JS customizados aqui -->
 <?@= $this->endSection() ?>

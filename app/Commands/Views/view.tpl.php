@@ -58,3 +58,6 @@
     });
 </script>
 <?@= $this->endSection() ?>
+<?@= $this->section('scripts') ?>
+<!-- códigos JS customizados aqui -->
+<?@= $this->endSection() ?>

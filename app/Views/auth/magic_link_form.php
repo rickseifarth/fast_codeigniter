@@ -19,12 +19,7 @@
             <?= form_open('magic-link') ?>
             <?= csrf_field() ?>
 
-            <!-- Email -->
-            <div class="form-floating mb-3">
-                <?= form_input('email', old('email', ''), ['class' => 'form-control', 'inputmode' => 'email', 'autocomplete' => 'email', 'placeholder' => 'email']); ?>
-                <?= form_label('E-mail', 'email'); ?>
-            </div>
-
+            <?= inputEmail('email', lang('Auth.email')); ?>
 
             <div class="d-grid col-12 col-md-8 mx-auto m-3">
                     <?= form_submit('submit', 'Enviar', ['class' => 'btn btn-primary btn-block']) ?>
