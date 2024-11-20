@@ -105,7 +105,7 @@
                 <ul>
                     <li>Utilize a section scripts do modelo e inclua o seguinte fonte:</li>
                     <p>
-                        $('textarea').trumbowyg(
+                        $('textarea').trumbowyg({
                         lang: 'pt_br',
                         btns: [
                         ['viewHTML'],
@@ -123,7 +123,7 @@
                         ['removeformat'],
                         ['fullscreen']
                         ]
-                        );
+                        });
                     </p>
                     <li>onde o 'textarea' pode ser o id do campo, classe ou tipo de campo</li>
                     <li>Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^</li>

@@ -80,7 +80,7 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 * Utilizar o Trumbowyg
 	* Utilize a section scripts do modelo e inclua o seguinte fonte:
 	```
-	$('textarea').trumbowyg(
+	$('textarea').trumbowyg({
 		lang: 'pt_br',
 		btns: [
 			['viewHTML'],
@@ -98,7 +98,7 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 			['removeformat'],
 			['fullscreen']
 		]
-	);
+	});
 	```
 	* onde o 'textarea' pode ser o id do campo, classe ou tipo de campo
 	* Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^
