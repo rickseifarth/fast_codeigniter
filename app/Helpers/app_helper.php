@@ -66,6 +66,24 @@ function inputFile($field_name, $label_name)
     return $retorno;
 }
 
+function inputDate($field_name, $label_name, $value = null)
+{
+    $retorno = "<div class=\"form-floating mb-4\">";
+    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name, 'class' => 'form-control', 'placeholder' => "dd/mm/yyyy", 'format' => 'dMY', 'autocomplete' => 'false']);
+    $retorno .= form_label($label_name, $field_name);
+    $retorno .= "</div>";
+    return $retorno;
+}
+
+function inputTime($field_name, $label_name, $value = null)
+{
+    $retorno = "<div class=\"form-floating mb-4\">";
+    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name, 'class' => 'form-control', 'placeholder' => $label_name], 'time');
+    $retorno .= form_label($label_name, $field_name);
+    $retorno .= "</div>";
+    return $retorno;
+}
+
 function inputHidden($field_name, $value = null)
 {
     return form_hidden($field_name, isset($value) ? $value : old($field_name, ''));
@@ -101,6 +119,18 @@ function inputFormat($field_name, $format, $reverse = 'false')
 {
     $retorno = "$('#$field_name').mask('$format', {reverse: $reverse})";
     return $retorno;
+}
+
+function timepicker($field_name)
+{
+    return "
+      $('#$field_name').datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
+        dayNamesMin: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
+        monthNames: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ],
+        changeYear: true,
+        yearRange: '" . date('Y') - 100 . ":" . date('Y') . "'});";
 }
 
 

@@ -15,6 +15,7 @@
 <?= script_tag('js/langs/pt_br.min.js'); ?>
 <?= script_tag('js/plugins/colors/trumbowyg.colors.min.js'); ?>
 <?= script_tag('js/plugins/emoji/trumbowyg.emoji.min.js'); ?>
+<?= script_tag('js/jquery-ui.js'); ?>
 
 
 <?= $this->renderSection('scripts') ?>
