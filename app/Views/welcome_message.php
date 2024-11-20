@@ -56,6 +56,7 @@
                     <li><a href="https://fontawesome.com/search?m=free&o=r" target="_blank">Font Aweasome Icons</a> - Icones e muitos icones! e de GRAÇA</li>
                     <li><a href="https://datatables.net/" target="_blank">Datatables.net</a> - Tabelas de forma prática, bonita, e rápida</li>
                     <li><a href="https://alex-d.github.io/Trumbowyg/" target="_blank">Trumbowyg</a> - Super editor WYSIWYG de text (em suma, faz um textarea virar um html completo com edição e zas e zas)</li>
+                    <li><a href="https://igorescobar.github.io/jQuery-Mask-Plugin/">Jquery Maks</a> - Máscara fácil para formatar seus campos, esse plugin é fantástico e economiza muito tempo na hora de formatar entradas para seus usuários</li>
                 </ul>
             </ul>
             <p class="fw-bold">Dicas de ouro</p>
@@ -102,9 +103,31 @@
                 <li>Utilizar o Trumbowyg</li>
                 <ul>
                     <li>Utilize a section scripts do modelo e inclua o seguinte fonte:</li>
-                    <li>$('textarea').trumbowyg();</li>
+                    <p>
+                        $('textarea').trumbowyg(
+                        lang: 'pt_br',
+                        btns: [
+                        ['viewHTML'],
+                        ['undo', 'redo'], // Only supported in Blink browsers
+                        ['formatting'],
+                        ['strong', 'em', 'del'],
+                        ['foreColor', 'backColor'],
+                        ['superscript', 'subscript'],
+                        ['link'],
+                        ['emoji'],
+                        ['insertImage'],
+                        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ['unorderedList', 'orderedList'],
+                        ['horizontalRule'],
+                        ['removeformat'],
+                        ['fullscreen']
+                        ]
+                        );
+                    </p>
                     <li>onde o 'textarea' pode ser o id do campo, classe ou tipo de campo</li>
                     <li>Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^</li>
+                    <li>Outra coisa importante! Quando um formulário recarrega com um erro de validação do codeiginiter, você pode ter problemas com a função old na formatação desse campo. Para resolver não esqueça do seguimte parametro:</li>
+                    <p>old('seu_campo', 'valor_padrao', 'raw') //o raw que é importante, pois ajusta a formatação dos campos</p>
                 </ul>
                 <li>Upload de arquivos</li>
                 <ul>
@@ -125,6 +148,14 @@
                 <li>Icones do font Aweasome</li>
                 <ul>
                     <li>Muito fácil! adicione a tag i com a classe como no site deles (exemplo fa-regular fa-face-smile-wink) <i class="fa-regular fa-face-smile-wink"></i></li>
+                </ul>
+                <li>Formatar campos com o Jquery Mask</li>
+                <ul>
+                    <li>Utilize o seletor de campo do Jquery seguido da função mask com o formato desejado, veja alguns exemplos:</li>
+                    <li>$('.date').mask('00/00/0000');</li>
+                    <li>$('.cep').mask('00000-000');</li>
+                    <li>$('.cpf').mask('000.000.000-00', {reverse: true});</li>
+                    <li>Tem muito mais coisas que vc pode encontrar na documentação oficial.</li>
                 </ul>
             </ul>
             <p class="fw-bold">E quem é você mesmo?</p>

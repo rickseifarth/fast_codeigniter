@@ -38,6 +38,7 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 	* [Font Aweasome Icons](https://fontawesome.com/search?o=r&m=free) - Icones e muitos icones! e de GRAÇA
 	* [Datatables.net](https://datatables.net/) - Tabelas de forma prática, bonita, e rápida
 	* [Trumbowyg](https://alex-d.github.io/Trumbowyg/) - Super editor WYSIWYG de text (em suma, faz um textarea virar um html completo com edição e zas e zas)
+	* [Jquery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin/) - Máscara fácil para formatar seus campos, esse plugin é fantástico e economiza muito tempo na hora de formatar entradas para seus usuários
 
 ## Dicas de ouro
 
@@ -130,6 +131,13 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 
 * Icones do font Aweasome
 	* Muito fácil! adicione a tag i com a classe como no site deles (exemplo fa-regular fa-face-smile-wink) 
+
+* Formatar campos com o Jquery Mask
+	* Utilize o seletor de campo do Jquery seguido da função mask com o formato desejado, veja alguns exemplos:
+	* $('.date').mask('00/00/0000');
+	* $('.cep').mask('00000-000');
+	* $('.cpf').mask('000.000.000-00', {reverse: true});
+	* Tem muito mais coisas que vc pode encontrar na documentação oficial.
 
 ## E quem é você mesmo?
 * Opa, me chamo Henrique Seifarth Lovato e sou apaixonado por tecnologias ágeis para gerar valor rapidamente me nosso dia a dia.
