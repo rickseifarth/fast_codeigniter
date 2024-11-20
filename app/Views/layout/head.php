@@ -9,7 +9,6 @@
     <?= link_tag('css/all.css'); ?>
     <?= link_tag('css/datatables.min.css'); ?>
     <?= link_tag('js/ui/trumbowyg.min.css'); ?>
-    <?= link_tag('js/jquery.mask.min.js');?>
     <?= link_tag('js/plugins/colors/ui/trumbowyg.colors.min.css'); ?>
     <?= link_tag('js/plugins/emoji/ui/trumbowyg.emoji.min.css'); ?>
 </head>
