@@ -97,7 +97,7 @@ function trumbowyg($field_name)
     return $retorno;
 }
 
-function inputFormat($field_name, $format, $reverse = false)
+function inputFormat($field_name, $format, $reverse = 'false')
 {
     $retorno = "$('#$field_name').mask('$format', {reverse: $reverse})";
     return $retorno;
