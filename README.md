@@ -39,6 +39,7 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 	* [Datatables.net](https://datatables.net/) - Tabelas de forma prática, bonita, e rápida
 	* [Trumbowyg](https://alex-d.github.io/Trumbowyg/) - Super editor WYSIWYG de text (em suma, faz um textarea virar um html completo com edição e zas e zas)
 	* [Jquery Mask](https://igorescobar.github.io/jQuery-Mask-Plugin/) - Máscara fácil para formatar seus campos, esse plugin é fantástico e economiza muito tempo na hora de formatar entradas para seus usuários
+	* [Codeigniter Shield](https://shield.codeigniter.com/) - O shield é fantástico para fazer o registro e gestão de usuários, nesta versão vc tem o registro do usuário, acesso com link mágico por e-mail, toda a estrutura de login e logout, alem de autorização e a possibilidade do usuário trocar a senha.
 
 ## Dicas de ouro
 
@@ -99,7 +100,6 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 		]
 	);
 	```
-	* 
 	* onde o 'textarea' pode ser o id do campo, classe ou tipo de campo
 	* Recomendo muito a consulta da documentação do Trumbowyg, tem vários plugins e configurações legais para fazer ^^
 	* Outra coisa importante! Quando um formulário recarrega com um erro de validação do codeiginiter, você pode ter problemas com a função old na formatação desse campo. Para resolver não esqueça do seguimte parametro:
@@ -131,6 +131,11 @@ Montei esta automação para unir a facilidade do codeigniter com o spark, de fo
 
 * Icones do font Aweasome
 	* Muito fácil! adicione a tag i com a classe como no site deles (exemplo fa-regular fa-face-smile-wink) 
+
+* Rotas protegidas
+	* Utilize os filtros do shield para proteger suas rotas, vc pode utilizar:
+		* $routes->get('rota', 'controllador::funcao', ['filter' => 'session']); para definir que somente usuários logados podem acessar
+		* $routes->get('rota', 'controllador::funcao', ['filter' => 'group:admin']); para definir que somente usuários com o grupo admin possam acessar
 
 * Formatar campos com o Jquery Mask
 	* Utilize o seletor de campo do Jquery seguido da função mask com o formato desejado, veja alguns exemplos:

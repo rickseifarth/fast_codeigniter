@@ -21,6 +21,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                                <li><?= anchor('user/change', 'Trocar Senha', ['class' => 'dropdown-item fw-bold '])?></li>
                                 <li><?= anchor('logout', 'Sair', ['class' => 'dropdown-item fw-bold '])?></li>
                             </ul>
                         </li>
