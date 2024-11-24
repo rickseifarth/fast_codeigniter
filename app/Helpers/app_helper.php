@@ -11,6 +11,7 @@ function simNao($valor): string
     }
 }
 
+
 // criação de campos
 function inputText($field_name, $label_name, $value = null)
 {
@@ -42,7 +43,7 @@ function inputTextArea($field_name, $label_name, $value = null)
 function inputEmail($field_name, $label_name, $value = null)
 {
     $retorno = "<div class=\"form-floating mb-4\">";
-    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['class' => 'form-control', 'inputmode' => 'email', 'autocomplete' => 'email', 'placeholder' => $label_name]);
+    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name,'class' => 'form-control', 'inputmode' => 'email', 'autocomplete' => 'email', 'placeholder' => $label_name]);
     $retorno .= form_label($label_name, $field_name);
     $retorno .= "</div>";
     return $retorno;
@@ -51,7 +52,7 @@ function inputEmail($field_name, $label_name, $value = null)
 function inputPass($field_name, $label_name, $value = null)
 {
     $retorno = "<div class=\"form-floating mb-4\">";
-    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['class' => 'form-control', 'autocomplete' => 'current-password', 'placeholder' => $label_name], 'password');
+    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name,'class' => 'form-control', 'autocomplete' => 'current-password', 'placeholder' => $label_name], 'password');
     $retorno .= form_label($label_name, $field_name);
     $retorno .= "</div>";
     return $retorno;
@@ -60,7 +61,7 @@ function inputPass($field_name, $label_name, $value = null)
 function inputFile($field_name, $label_name)
 {
     $retorno = "<div class=\"form-floating mb-4\">";
-    $retorno .= form_input($field_name, '', ['class' => 'form-control', 'autocomplete' => 'current-password', 'placeholder' => $label_name], 'file');
+    $retorno .= form_input($field_name, '', ['id' => $field_name,'class' => 'form-control', 'autocomplete' => 'current-password', 'placeholder' => $label_name], 'file');
     $retorno .= form_label($label_name, $field_name);
     $retorno .= "</div>";
     return $retorno;
@@ -69,7 +70,7 @@ function inputFile($field_name, $label_name)
 function inputDate($field_name, $label_name, $value = null)
 {
     $retorno = "<div class=\"form-floating mb-4\">";
-    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name, 'class' => 'form-control', 'placeholder' => "dd/mm/yyyy", 'format' => 'dMY', 'autocomplete' => 'false']);
+    $retorno .= form_input($field_name, old($field_name, isset($value) ? $value : ''), ['id' => $field_name, 'class' => 'form-control', 'placeholder' => "dd/mm/yyyy", 'format' => 'dMY', 'autocomplete' => 'off']);
     $retorno .= form_label($label_name, $field_name);
     $retorno .= "</div>";
     return $retorno;
@@ -146,4 +147,40 @@ function ajustarBooleano($dados, $campo)
     }
 
     return $dados;
+}
+
+// facilitador de conversão de datas
+function dataParaBD($data)
+{
+    if (isset($data)) {
+        if ($data != "") {
+            return date("Y-m-d", strtotime(str_replace('/', '-', $data)));
+        }
+    }
+    return '';
+}
+
+function dataParaView($data)
+{
+    if (isset($data)) {
+        if ($data != "") {
+            return date("d/m/Y", strtotime($data));
+        }
+    }
+    return '';
+}
+
+//facilitador com exibição de imagem existente
+function existeImagem($imagem = null)
+{
+    $retorno = "";
+    if (isset($imagem)) {
+        $retorno = "<div class=\"row\">
+        <div class=\"col-12 d-flex flex-column mb-3\">
+            <span>Imagem atual:</span>" .
+            img($imagem, false, ['class' => 'img rounded img-thumbnail', 'width' => '200']) .
+            "</div>
+        </div>";
+    }
+    return $retorno;
 }
